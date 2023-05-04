@@ -41,4 +41,22 @@ export class FirebaseService {
     localStorage.removeItem('user');
   }
 
+  //===== Firestore (Base de datos) [funciones CRUD] =====
+
+  getSubcollection(path: string, subcolletionName: string) {
+    return this.db.doc(path).collection(subcolletionName).valueChanges({ idField: 'id' });
+  }
+
+  addToSubcollection(path: string, subcolletionName: string, object: any) {
+    return this.db.doc(path).collection(subcolletionName).add(object);
+  }
+
+  updateDocument(path: string, object: any) {
+    return this.db.doc(path).update(object);
+  }
+
+  deleteDocument(path: string) {
+    return this.db.doc(path).delete();
+  }
+
 }
